@@ -59,10 +59,10 @@ variable "ami_id" {
   #}
 #}
 
-#resource "aws_iam_instance_profile" "instance_profile" {
- # name = join("", [var.name, "-", "iam-instance-profile"])
-  #role = var.iam_role_name
-#}
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = join("", [var.name, "-", "iam-instance-profile"])
+  role = var.iam_role_name
+}
 
 
 
