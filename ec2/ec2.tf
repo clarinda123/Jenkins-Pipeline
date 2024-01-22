@@ -8,10 +8,10 @@ variable "tags" {
   description = "tags for the vpc module"
 }
 
-#variable "iam_role_name" {
- # type        = string
-  #description = "iam role name to attach to the instance profile"
-#}
+variable "iam_role_name" {
+  type        = string
+  description = "iam role name to attach to the instance profile"
+}
 
 variable "key_pair_name" {
   type        = string
@@ -25,38 +25,38 @@ variable "ami_id" {
   default = "ami-01acac09adf473073" //in oregon US-WEST-2 region
 }
 
-#resource "aws_security_group" "ec2_sg1" {
- # name        = join("", [var.name, "-", "ec2-sg1"])
-  #description = "Allow  traffic for http and ssh"
+resource "aws_security_group" "ec2_sg1" {
+  name        = join("", [var.name, "-", "ec2-sg1"])
+  description = "Allow  traffic for http and ssh"
 
 
-  #ingress {
-   # from_port   = 22
-    #to_port     = 22
-    #protocol    = "tcp"
-    #cidr_blocks = ["0.0.0.0/0"]
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  #ingress {
-   # from_port   = 9100
-    #to_port     = 9100
-    #protocol    = "tcp"
-    #cidr_blocks = ["0.0.0.0/0"]
-  #}
+  ingress {
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-  #ingress {
-   # from_port   = 8080
-    #to_port     = 8080
-    #protocol    = "tcp"
-    #cidr_blocks = ["0.0.0.0/0"]
-  #}
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-  #egress {
-   # from_port   = 0
-    #to_port     = 0
-    #protocol    = "-1"
-    #cidr_blocks = ["0.0.0.0/0"]
-  #}
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
