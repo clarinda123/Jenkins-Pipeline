@@ -25,8 +25,8 @@ variable "ami_id" {
   default = "ami-01acac09adf473073" //in oregon US-WEST-2 region
 }
 
-resource "aws_security_group" "ec2_sg" {
-  name        = join("", [var.name, "-", "ec2-sg"])
+resource "aws_security_group" "ec2_sg1" {
+  name        = join("", [var.name, "-", "ec2-sg1"])
   description = "Allow  traffic for http and ssh"
 
 
@@ -70,7 +70,7 @@ resource "aws_instance" "web_server" {
   ami                    = var.ami_id
   instance_type          = "t3.small"
   key_name               = var.key_pair_name
-  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+  vpc_security_group_ids = [aws_security_group.ec2_sg1.id]
   user_data              = file("scripts/userdata.sh")
   iam_instance_profile   = aws_iam_instance_profile.instance_profile.name
   tags                   = merge(var.tags, { Name = join("", [var.name, "-", "webserver"]) }, { Environment = var.name })
